@@ -1,1 +1,1 @@
-# Diretório destinado a estudos no IFPR por meio da linguagem PHP.
+# Diretório destinado a estudos por meio da linguagem PHP - IFPR 2024.
