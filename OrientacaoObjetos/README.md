@@ -1,1 +1,1 @@
-# Diretório dedicado a disciplina de Orientação de Objetos.
+# Diretório dedicado a disciplina de Orientação a Objetos.
