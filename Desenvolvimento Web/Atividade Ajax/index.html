@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Filmes em Cartaz</title>
+    </head>
+    <body>
+        <div>
+            <h1>Find Cinema</h1>
+            <input type="text" id="movieName" placeholder="Digite o nome do filme">
+            <button id="searchButton">Buscar</button>
+            <h2>Lista de filmes buscados</h2>
+            <div id="results"></div>
+        </div>
+    </body>
+    <script>
+        let botao = document.getElementById('searchButton');
+        botao.addEventListener('click', () => {
+            let filme = document.getElementById('movieName').value;
+            cineFind(filme);
+        });
+
+        function cineFind(movieName) {
+            const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=2dbca7a779fef19d8dc0acc77384df5a&query=${movieName}&language=pt-BR`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const resultsDiv = document.getElementById('results');
+                    if (data.results.length > 0) {
+                        const movie = data.results[0];
+                        resultsDiv.innerHTML += `
+                            <h2>${movie.title}</h2>
+                            <p>${movie.overview}</p>
+                            <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}">
+                        `;
+                    } else {
+                        resultsDiv.innerHTML = '<p>Ops! Filme não encontrado.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+        }
+    </script>
+</html>
